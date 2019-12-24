@@ -1,0 +1,48 @@
+.imageheader{
+    height: 100%;
+    width: 100%;
+    background-image: url("../../../assets/images/banner-topo.jpg");
+    background-position: left; 
+    background-size: 250px;
+}
+
+.sidebar-header{
+    height: 240px;
+}
+
+.divboxbuton{
+    align-items: center;
+    align-content: center;
+    padding-top: 10px;
+}
+
+
+.rightboxSide{
+    float:right; 
+    width: 84%;
+    padding-left: 5px; 
+    color: white;
+    text-align: left;
+
+}
+
+.middleboxSide{ 
+    float:left;  
+    width: 16%; 
+    color: white;
+    text-align: right;
+} 
+
+.bar-button{
+ height: 45px;
+ background-color: rgb(27, 121, 183);
+ cursor: pointer;
+}
+
+.bar-button:hover{
+    background-color:rgb(42, 138, 201)
+}
+
+.Side{
+    height: 100%;
+}

@@ -1,0 +1,88 @@
+.btn-navbar{
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 6px;
+}
+
+.textlogo{
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    font-size: 20px;
+}
+.amarelo {
+
+    color: #f9c069;
+
+}
+
+.navbar-brand{
+    cursor: pointer;
+
+}
+.azul {
+    color: white;
+}
+
+img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    
+  }
+
+
+.textbar{
+    font-size: 17px;
+    color: white; 
+    opacity: 1.0;
+}
+
+.textbar:hover{
+    text-decoration: none;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.middlebox6{ 
+    float:left;  
+    width: 65%; 
+    color: white;
+    text-align: right;
+    padding-top: 8px
+} 
+
+.rightbox6{ 
+    float:right; 
+    width: 35%;
+    padding-left: 7px; 
+    color: white;
+    text-align: left;
+} 
+
+.verde {
+
+    color: #96c964;
+}
+
+.iconsbtn{
+    color:white; 
+    font-size: 24px; 
+    cursor: pointer;
+}
+
+.iconsbtn:hover{
+    opacity: 1.0;
+}
+
+.borderRight{
+  -webkit-box-shadow: 5px 0 6px -2px #888;
+          box-shadow: 5px 0 6px -2px #888;
+}
+
+.borderBotton{
+    -webkit-box-shadow: 0px 6px 5px -3px #888;
+            box-shadow: 0px 6px 5px -3px #888;
+  }
