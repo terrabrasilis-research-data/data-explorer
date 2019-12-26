@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { layerGroup, tileLayer, Layer, geoJSON } from 'leaflet';
+import { layerGroup, tileLayer, Layer, geoJSON , circle, polygon} from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -13,15 +13,6 @@ export class MapComponent implements OnInit, LeafletModule {
   public layersControl: any;
 
   constructor() { }
-
-  google_hybrid = {
-    id: 'google_hybrid',
-    enabled: true,
-    name: 'Google Hybrid',
-    layer: tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    }),
- }
   
 	geoJSON = {
 		id: 'geoJSON',
@@ -57,32 +48,24 @@ export class MapComponent implements OnInit, LeafletModule {
 			{ style: () => ({ color: '#ff7800' })})
   };
   
-  baseMaps = {
-    "Google Hybrid": this.google_hybrid
-  };
-
-  overlayMaps = {
-      "Geo JSON Polygon": this.geoJSON
-  };
-
-  layers: Layer[] = [];
-  
 	options = {
-  };
 
+  };
 
   ngOnInit() {
 
-    this.layers.push(this.google_hybrid.layer)
-    this.layers.push(this.geoJSON.layer)
-
-    this.layersControl = layerGroup([ ])
-
+    this.layersControl = {
+      baseLayers: {
+        'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
+        'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+      },
+      overlays: { }
+    }
+    
     this.options = 	{ 
       zoom: 4,
-		  center: this.geoJSON.layer.getBounds().getCenter()
+      center: this.geoJSON.layer.getBounds().getCenter(),
+      layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
     }
-
-  }
-
+ }
 }
