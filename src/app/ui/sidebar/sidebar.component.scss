@@ -16,7 +16,6 @@
     padding-top: 10px;
 }
 
-
 .rightboxSide{
     float:right; 
     width: 84%;
@@ -43,6 +42,77 @@
     background-color:rgb(42, 138, 201)
 }
 
+.bar-button-solid{
+    height: 45px;
+    background-color: rgb(27, 121, 183);
+   }
+   
 .Side{
     height: 100%;
+}
+
+.textMenu{
+    padding-left: 6px;
+}
+
+.btnSearch{
+    margin-left: 17px;
+    margin-right: 17px;
+    color:#FFF !important;
+    font-weight: 600 !important;
+    background:#4ddf7c !important;
+}
+
+.contentBox{
+    background-color: #FFF;
+    height: 245px;
+    padding: 0;
+}
+
+.mat-expansion-panel {
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid rgb(27, 121, 183);
+    background: var(--mainBgLight);
+
+    &:last-child {
+        border-bottom: 0.5px solid rgb(27, 121, 183);
+    }
+
+    .mat-expansion-panel-header {
+        background:rgb(27, 121, 183) !important;
+        border-radius: 0 !important;
+        border: none;
+        display: flex;
+        align-items: center;
+
+        .mat-expansion-panel-header-title {
+            color: #FFF;
+
+            .mat-icon {
+                margin-right: 10px;
+            }
+        }
+
+        .mat-expansion-panel-body {
+            background: #FFF;
+        }
+
+        &:hover {
+            background: rgba(#000, 0.3);
+        }
+    }
+}
+
+.mat-expansion-panel-spacing {
+    margin: 0;
+}
+.marginUp{
+    margin-top: 14px;
+}
+
+.hr {
+    margin: 0px 0 15px 0;
+    padding: 0;
+    border: 0.5px dashed rgb(27, 121, 183);
 }

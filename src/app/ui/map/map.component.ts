@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { layerGroup, tileLayer, Layer, geoJSON , circle, polygon} from 'leaflet';
 
+import * as L from 'leaflet';
+import 'leaflet.fullscreen/Control.FullScreen.js';
+import 'src/assets/plugins/Leaflet.Coordinates/Leaflet.Coordinates-0.1.5.min.js';
+import 'esri-leaflet/dist/esri-leaflet.js';
+import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -14,40 +20,6 @@ export class MapComponent implements OnInit, LeafletModule {
 
   constructor() { }
   
-	geoJSON = {
-		id: 'geoJSON',
-		name: 'Geo JSON Polygon',
-		enabled: true,
-		layer: geoJSON(
-			({
-        type: 'Polygon',
-
-				coordinates: [[
-          [
-            -67.92626,
-            6.656333333333333
-          ],
-          [
-            -49.38799999999998,
-            6.656333333333333
-          ],
-          [
-            -49.38799999999998,
-            -3.89446
-          ],
-          [
-            -67.92626,
-            -3.89446
-          ],
-          [
-            -67.92626,
-            6.656333333333333
-          ]
-				]]
-			}) as any,
-			{ style: () => ({ color: '#ff7800' })})
-  };
-  
 	options = {
 
   };
@@ -58,14 +30,14 @@ export class MapComponent implements OnInit, LeafletModule {
       baseLayers: {
         'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
         'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-      },
-      overlays: { }
+      }
     }
     
     this.options = 	{ 
       zoom: 4,
-      center: this.geoJSON.layer.getBounds().getCenter(),
+      center: [6, -67],
       layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
     }
- }
+
+  }
 }

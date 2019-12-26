@@ -1,27 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
-let logged = false;
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
+
 export class SidebarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  selectedFood: string;
+  
+  foods: Food[] = [
+    {id: 0, viewValue: 'Steak'},
+    {id: 1, viewValue: 'Pizza'},
+    {id: 2, viewValue: 'Tacos'}
+  ];
+  
+  
+  addlayer(id: number){
+
   }
 
-  isLogged(){
-    return logged;
+  ngOnInit() {
+  
   }
-  change(){
-	if (logged==true){
-	    logged = false;
-	} else {
-	    logged = true;
-	}
-  }
+  
+}
+
+export interface Food {
+  id: number;
+  viewValue: string;
 }

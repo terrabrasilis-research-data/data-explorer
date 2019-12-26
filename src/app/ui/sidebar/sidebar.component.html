@@ -1,5 +1,5 @@
   <!-- Sidebar -->
-  <div class="Side" id="sidebar-wrapper" style="background-color: rgb(16, 102, 161);">
+  <div class="Side" id="sidebar-wrapper" style="background-color: white">
         <div class="list-group list-group-flush">
 
             <!-- Sidebar Header -->
@@ -15,80 +15,43 @@
 
                 </div>
             </a>
-            <span *ngIf="!isLogged()">
-            <div class="bar-button divboxbuton" routerLink="/">
-                
-                <div class="middleboxSide"> <i class="material-icons">home</i> </div>
-                <div class="rightboxSide">Home</div>
-                
-            </div>
+             
+    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+      <i class="material-icons">search</i>
+      Buscar
+    </mat-panel-title>
 
-            <div class="bar-button divboxbuton" (click)="change()">
-                
-                <div class="middleboxSide"> <i class="material-icons">person</i> </div>
-                <div class="rightboxSide">Login</div>
-            
-            </div>
-        </span>
-        
-            <span *ngIf="isLogged()">
+    </mat-expansion-panel-header>
 
-            <div class="bar-button divboxbuton" routerLink="/dashboard">
-                <div class="middleboxSide"> <i class="material-icons">dashboard</i> </div>
-                <div class="rightboxSide" >Dashboard</div>
-            </div>
+    <mat-form-field appearance="fill" class="marginUp" >
+        <mat-label class="textMenu">Buscar em Datasets</mat-label>
+        <mat-select [(value)]="selected" class="textMenu" multiple required> 
+          <mat-option *ngFor="let food of foods" [value]="food.id">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-            <div class="bar-button divboxbuton"  routerLink="/create/dataset">
-                <div class="middleboxSide"> <i class="material-icons">note_add</i> </div>
-                <div class="rightboxSide" >New Dataset</div>
-            </div>
+      <button mat-raised-button class="btnSearch">Adicionar Camada</button>
 
-            <div class="bar-button divboxbuton"  routerLink="create/repositorie">
-                <div class="middleboxSide"> <i class="material-icons">library_add</i> </div>
-                <div class="rightboxSide">New Repository</div>
-            </div>
+    </mat-expansion-panel>
 
-            <div class="bar-button divboxbuton"  routerLink="create/group">
-                <div class="middleboxSide"> <i class="material-icons">group_add</i> </div>
-                <div class="rightboxSide">New Group</div>
-            </div>
 
-            <div class="bar-button divboxbuton"   routerLink="view/datasets" >
-                <div class="middleboxSide"> <i class="material-icons">description</i> </div>
-                <div class="rightboxSide">Datasets</div>
-            </div>
-            
-            <div class="bar-button divboxbuton"    routerLink="view/repositories" >
-                <div class="middleboxSide"> <i class="material-icons">library_books</i> </div>
-                <div class="rightboxSide">Repositories</div>
-            </div>
-
-            <div class="bar-button divboxbuton" routerLink="view/groups" >
-                <div class="middleboxSide"> <i class="material-icons">group</i> </div>
-                <div class="rightboxSide">Groups</div>
-            </div>
-
-            <div class="bar-button divboxbuton"  >
-                <div class="middleboxSide"> <i class="material-icons">assessment</i> </div>
-                <div class="rightboxSide">Stats</div>
-            </div> 
-
-            <div class="bar-button divboxbuton"     routerLink="view/services" >
-                <div class="middleboxSide"> <i class="material-icons">dns</i> </div>
-                <div class="rightboxSide">Services</div>
-            </div>
-
-            <div class="bar-button divboxbuton"  >
-                <div class="middleboxSide"> <i class="material-icons">person</i> </div>
-                <div class="rightboxSide">Account</div>
-            </div>
-
-            <div class="bar-button divboxbuton"  (click)="change()" routerLink="/" >
-                <div class="middleboxSide"> <i class="material-icons">exit_to_app</i> </div>
-                <div class="rightboxSide">Logout</div>
-            </div>
-        </span>              
-        </div>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          
+            <mat-panel-title>
+            <i class="material-icons">layers</i>
+            Camadas
+          </mat-panel-title>
+    
+        </mat-expansion-panel-header>
+    
+        <p> Camadas </p>
+        </mat-expansion-panel>
+    
 
     </div>
     <!-- /#sidebar-wrapper -->
