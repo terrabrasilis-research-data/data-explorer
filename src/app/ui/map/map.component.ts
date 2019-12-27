@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import {  MapLeaflet, MapOptions, rectangle, tileLayer } from 'leaflet';
 
 import * as L from 'leaflet';
 import 'leaflet.fullscreen/Control.FullScreen.js';
@@ -8,25 +6,22 @@ import 'src/assets/plugins/Leaflet.Coordinates/Leaflet.Coordinates-0.1.5.min.js'
 import 'esri-leaflet/dist/esri-leaflet.js';
 import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
 
+import { MapOptions, Map as MapLeaflet,
+  rectangle, tileLayer } from 'leaflet';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 
-export class MapComponent implements OnInit, LeafletModule {
+export class MapComponent implements OnInit {
   
-  constructor() { }
+ constructor() { }
   
- @Input() width: number;
- @Input() height: number;
- 
  public map: MapLeaflet;
  public options: MapOptions;
  public layersControl: any;
-
- private tilesUsed: number[];
- private bbox = null;
 
  ngOnInit() {
     this.layersControl = {
