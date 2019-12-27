@@ -27,7 +27,7 @@
 
     <mat-form-field appearance="fill" class="marginUp" >
         <mat-label class="textMenu">Buscar em Datasets</mat-label>
-        <mat-select [(value)]="selected" class="textMenu" multiple required> 
+        <mat-select [(value)]="selected" class="textMenu" multiple> 
           <mat-option *ngFor="let food of foods" [value]="food.id">
             {{food.viewValue}}
           </mat-option>

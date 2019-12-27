@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { layerGroup, tileLayer, Layer, geoJSON , circle, polygon} from 'leaflet';
+import {  MapLeaflet, MapOptions, rectangle, tileLayer } from 'leaflet';
 
 import * as L from 'leaflet';
 import 'leaflet.fullscreen/Control.FullScreen.js';
@@ -16,16 +16,19 @@ import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
 
 export class MapComponent implements OnInit, LeafletModule {
   
-  public layersControl: any;
-
   constructor() { }
   
-	options = {
+ @Input() width: number;
+ @Input() height: number;
+ 
+ public map: MapLeaflet;
+ public options: MapOptions;
+ public layersControl: any;
 
-  };
+ private tilesUsed: number[];
+ private bbox = null;
 
-  ngOnInit() {
-
+ ngOnInit() {
     this.layersControl = {
       baseLayers: {
         'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
@@ -39,5 +42,66 @@ export class MapComponent implements OnInit, LeafletModule {
       layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
     }
 
-  }
+ }
+
+ private setFullscreenControl() {
+   (L.control as any).fullscreen({
+     position: 'topleft',
+     title: 'Show Map Fullscreen',
+     titleCancel: 'Exit Fullscreen',
+     content: null,
+     forceSeparateButton: true
+   }).addTo(this.map);
+ }
+
+ private setCoordinatesControl() {
+   (L.control as any).coordinates({
+     position: 'bottomleft',
+     decimals: 5,
+     decimalSeperator: '.',
+     labelTemplateLat: 'Lat: {y}',
+     labelTemplateLng: '| Lng: {x}',
+     enableUserInput: false,
+     useDMS: false,
+     useLatLngOrder: true,
+   }).addTo(this.map);
+ }
+
+ private setGeocoderControl() {
+   const searchControl = LE.geosearch().addTo(this.map);
+   const vm = this;
+
+   searchControl.on('results', data => {
+     vm.map.eachLayer( l => {
+       if (l['options'].className === 'previewBbox') {
+         vm.map.removeLayer(l);
+       }
+     });
+
+     for (let i = data.results.length - 1; i >= 0; i--) {
+       const newLayer = rectangle(data.results[i].bounds, {
+         color: '#CCC',
+         weight: 1,
+         interactive: false,
+         className: 'previewBbox'
+       });
+
+       vm.map.addLayer(newLayer);
+     }
+   });
+ }
+
+ public setScaleControl() {
+   L.control.scale({
+     imperial: false
+   }).addTo(this.map);
+ }
+
+ onMapReady(map: MapLeaflet) {
+   this.map = map;
+   this.setFullscreenControl();
+   this.setCoordinatesControl();
+   this.setGeocoderControl();
+   this.setScaleControl();
+ }
 }

@@ -84,3 +84,38 @@ body {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.leaflet-control-container .leaflet-control-coordinates .uiHidden {
+  display: none !important;
+}
+.leaflet-control-container .leaflet-control-coordinates .label {
+  border-radius: 5px;
+  background: rgba(#FFF, 0.5);
+  margin: 0px;
+
+  .labelFirst {
+      padding: 20px 7.5px;
+  }
+}
+.geocoder-control-input.geocoder-control-loading{
+  background-color: #FFF;
+  background-image: url("esri-leaflet-geocoder/dist/img/loading@2x.gif");
+}
+
+.leaflet-bottom .leaflet-control-scale {
+  margin-left: 210px;
+  display: flex;
+  margin-bottom: -30px;
+  
+  .leaflet-control-scale-line {
+      background: rgba(#FFF, 0.9);
+      border: none;
+      font-size: 12px;
+      padding: 2.5px 5px !important;
+      line-height: none;
+      border-radius: 5px;
+
+      &:not(:first-child) {
+          margin-top: 0;
+      }
+  }
+}

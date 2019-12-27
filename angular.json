@@ -29,7 +29,12 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/leaflet.fullscreen/Control.FullScreen.css",
+              "src/assets/plugins/Leaflet.Coordinates/Leaflet.Coordinates-0.1.5.css",
+              "src/assets/plugins/Leaflet.Coordinates/Leaflet.Coordinates-0.1.5.ie.css",
+              "./node_modules/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css",
+              "./node_modules/primeicons/primeicons.css"
             ],
             "scripts": [
             ]
