@@ -10,7 +10,7 @@ export class DatasetsService {
   }
 
   public async get_datasets(): Promise<any> {
-    const response = await this.http.get(`http://127.0.0.1:4/get_datasets.json`).toPromise();
+    const response = await this.http.get(`http://127.0.0.1:8000/get_datasets.json`).toPromise();
     return response;
   }
 
