@@ -1,1 +1,0 @@
-run 'server_json.py' to serve all JSON in this folder.

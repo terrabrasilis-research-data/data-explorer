@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DatasetsService } from '../../services/dataset.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,32 +11,86 @@ import { DatasetsService } from '../../services/dataset.service';
 export class SidebarComponent implements OnInit {
   
   color = 'primary';
- 
-  constructor(private ds: DatasetsService) { }
+
+  constructor(private ds: DatasetsService, public dialog: MatDialog) { }
+
+
+  openConfigDialog(id: number): void {
+    const dialogRef = this.dialog.open(DialogConfig, {
+      width: '350px',
+      data: {id:  id, title: this.datasets[id].title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
+  openInfoDialog(id: number): void {
+    const dialogRef2 = this.dialog.open(DialogInfo, {
+      width: '450px',
+      height: '350px',
+      data: {id:  id, title: this.datasets[id].title}
+    });
+
+    dialogRef2.afterClosed().subscribe(result => {
+      
+    });
+  }
 
   addlayer(ids: Array < number >){
     
     for (let i = 0; i < ids.length; i++) {
-      this.layers.push(this.dataset[ids[i]-1])
+      this.layers.push(this.datasets[ids[i]-1])
     }
-
-    console.log(this.layers)
   }
 
   ngOnInit() {
     this.get_datasets();
   }
 
-  dataset: Dataset = null;
+  datasets: Dataset = null;
   
   layers = [];
 
   async get_datasets(){
     const response = await this.ds.get_datasets();
-    this.dataset = response;
+    this.datasets = response;
     
   }
   
+}
+
+@Component({
+  selector: 'config',
+  templateUrl: 'config.html',
+})
+
+export class DialogConfig {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogConfig>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'info',
+  templateUrl: 'info.html',
+})
+
+export class DialogInfo {
+
+  constructor(
+    public dialogRef2: MatDialogRef<DialogInfo>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef2.close();
+  }
 }
 
 export interface Dataset{
@@ -61,4 +116,8 @@ export interface Data_obj {
   name: string;
   size: string;
   created_on: string;
+}
+
+export interface DialogData {
+  id: number;
 }

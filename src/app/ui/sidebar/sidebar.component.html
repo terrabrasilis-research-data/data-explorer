@@ -25,17 +25,17 @@
 
     </mat-expansion-panel-header>
 
-    <mat-form-field appearance="fill" class="marginUp" >
+    <mat-form-field appearance="fill" class="bodySide">
         <mat-label class="textMenu">Buscar em Datasets</mat-label>
         <mat-select [(value)]="selected" class="textMenu" multiple> 
-          <mat-option *ngFor="let data of dataset" [value]="data.id">
+          <mat-option *ngFor="let data of datasets" [value]="data.id">
             {{data.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <button mat-raised-button class="btnSearch" (click)="addlayer(selected)">Adicionar Camada</button>
-
+  
     </mat-expansion-panel>
 
 
@@ -48,13 +48,12 @@
           </mat-panel-title>
     
         </mat-expansion-panel-header>
-    
       
         <div class="itemLayer" *ngFor="let layer of layers">
                 
-          <div class="middleboxSide"> <i class="material-icons">settings</i> </div>
+          <div class="middleboxSide"> <i class="material-icons config" (click)="openConfigDialog(layer.id)">settings</i> </div>
           <div class="rightboxSide">
-            <div class="middleboxSide2"> {{layer.title}}  </div>
+            <div class="middleboxSide2 title" (click)="openInfoDialog(layer.id)"> {{layer.title}}  </div>
             <div class="rightboxSide2">
               
               <mat-slide-toggle
@@ -63,12 +62,18 @@
               </mat-slide-toggle>
             
             </div>
-
+            
+  
           </div>
-      </div>
+
+        </div>
 
 
       </mat-expansion-panel>
         
+  
+      
+
+
     </div>
     <!-- /#sidebar-wrapper -->
