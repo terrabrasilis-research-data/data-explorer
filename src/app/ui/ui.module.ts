@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion'; 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -28,6 +29,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatInputModule,
     MatSliderModule,
     MatButtonModule,
+    MatSlideToggleModule,
   ],
   exports: [LayoutComponent]
 })

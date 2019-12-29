@@ -16,22 +16,6 @@
     padding-top: 10px;
 }
 
-.rightboxSide{
-    float:right; 
-    width: 84%;
-    padding-left: 5px; 
-    color: white;
-    text-align: left;
-
-}
-
-.middleboxSide{ 
-    float:left;  
-    width: 16%; 
-    color: white;
-    text-align: right;
-} 
-
 .bar-button{
  height: 45px;
  background-color: rgb(27, 121, 183);
@@ -73,7 +57,6 @@
     border-radius: 0;
     box-shadow: none;
     border-top: 1px solid rgb(27, 121, 183);
-    background: var(--mainBgLight);
 
     &:last-child {
         border-bottom: 0.5px solid rgb(27, 121, 183);
@@ -90,7 +73,7 @@
             color: #FFF;
 
             .mat-icon {
-                margin-right: 10px;
+                margin-right: 5px;
             }
         }
 
@@ -106,13 +89,58 @@
 
 .mat-expansion-panel-spacing {
     margin: 0;
+    padding: 0;
 }
 .marginUp{
     margin-top: 14px;
 }
 
 .hr {
-    margin: 0px 0 15px 0;
+    margin: 0px 0 10px 0;
     padding: 0;
     border: 0.5px dashed rgb(27, 121, 183);
 }
+.itemLayer{
+    align-items: center;
+    align-content: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    height: 70px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-bottom: 1px solid #eff0f1;
+}
+
+.itemLayer:hover{
+
+    text-decoration: underline;
+    color: rgb(27, 121, 183);
+    cursor: pointer;
+}
+
+.rightboxSide{
+    float:right; 
+    width: 85%;
+    text-align: left;
+
+}
+
+.middleboxSide{ 
+    float:left;  
+    width: 15%; 
+    text-align: left;
+} 
+
+
+.rightboxSide2{
+    float:right; 
+    width: 15%;
+    text-align: left;
+
+}
+
+.middleboxSide2{ 
+    float:left;  
+    width: 85%; 
+    text-align: left;
+} 

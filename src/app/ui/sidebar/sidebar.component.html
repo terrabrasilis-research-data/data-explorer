@@ -28,30 +28,47 @@
     <mat-form-field appearance="fill" class="marginUp" >
         <mat-label class="textMenu">Buscar em Datasets</mat-label>
         <mat-select [(value)]="selected" class="textMenu" multiple> 
-          <mat-option *ngFor="let food of foods" [value]="food.id">
-            {{food.viewValue}}
+          <mat-option *ngFor="let data of dataset" [value]="data.id">
+            {{data.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button class="btnSearch">Adicionar Camada</button>
+      <button mat-raised-button class="btnSearch" (click)="addlayer(selected)">Adicionar Camada</button>
 
     </mat-expansion-panel>
 
 
-    <mat-expansion-panel>
+    <mat-expansion-panel  [expanded]="true">
         <mat-expansion-panel-header>
           
-            <mat-panel-title>
+            <mat-panel-title >
             <i class="material-icons">layers</i>
             Camadas
           </mat-panel-title>
     
         </mat-expansion-panel-header>
     
-        <p> Camadas </p>
-        </mat-expansion-panel>
-    
+      
+        <div class="itemLayer" *ngFor="let layer of layers">
+                
+          <div class="middleboxSide"> <i class="material-icons">settings</i> </div>
+          <div class="rightboxSide">
+            <div class="middleboxSide2"> {{layer.title}}  </div>
+            <div class="rightboxSide2">
+              
+              <mat-slide-toggle
+              [color]="color"
+              [checked]="checked">
+              </mat-slide-toggle>
+            
+            </div>
 
+          </div>
+      </div>
+
+
+      </mat-expansion-panel>
+        
     </div>
     <!-- /#sidebar-wrapper -->

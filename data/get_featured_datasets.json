@@ -1,0 +1,38 @@
+[
+   {
+      "id":1,
+      "name":"Sedimentology, geochemistry and winter se ice",
+      "created_on":"Wed, 04 Sep 2019 14:48:54 GMT",
+      "authors":[
+         "Krahl Guilherme",
+         "Jairo Francisco",
+         "Astrid"
+      ],
+      "year":2019,
+      "abstract":"cross the globe, vulture species are experiencing major population declines. A key factor for the long-term persistence of these endangered species is the maintenance of genetic diversity patterns within wild.",
+      "repositorie":"LabISA"
+   },
+   {
+      "id":2,
+      "name":"Biomarkers (TEX86), planktic isotopes and XRF records of IODP Site",
+      "created_on":"Wed, 04 Sep 2019 14:48:54 GMT",
+      "authors":[
+         "Jairo Francisco",
+         "Cornils Astrid"
+      ],
+      "year":2018,
+      "abstract":"Forest biomass is an essential indicator for monitoring the Earth’s ecosystems and climate. It is a critical input to greenhouse gas accounting, estimation of carbon losses and forest degradation, assessment of.",
+      "repositorie":"LiSS"
+   },
+   {
+      "id":3,
+      "name":"Age determination, stable carbon, and hydrogen isotope compositionAge determination, stable carbon, and hydrogen isotope composition",
+      "created_on":"Wed, 04 Sep 2019 14:48:54 GMT",
+      "authors":[
+         "Cornils Astrid"
+      ],
+      "year":2017,
+      "abstract":"The upper limb activity of twenty unilateral upper limb myoelectric prosthesis users and twenty anatomically intact adults were recorded over a 7-day period using two wrist worn accelerometers (Actigraph, LLC).",
+      "repositorie":"TREES"
+   }
+]
