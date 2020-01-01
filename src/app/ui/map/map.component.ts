@@ -7,7 +7,7 @@ import 'esri-leaflet/dist/esri-leaflet.js';
 import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
 
 import { MapOptions, Map as MapLeaflet,
-  rectangle, tileLayer } from 'leaflet';
+  rectangle, tileLayer, polygon } from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -17,26 +17,57 @@ import { MapOptions, Map as MapLeaflet,
 
 export class MapComponent implements OnInit {
   
- constructor() { }
-  
+ constructor() { 
+   
+ }
+ 
  public map: MapLeaflet;
+ 
  public options: MapOptions;
  public layersControl: any;
 
  ngOnInit() {
-    this.layersControl = {
-      baseLayers: {
-        'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
-        'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-      }
-    }
+  this.baselayers();
+  
+  this.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
+  //this.addLayer( [0, 1], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' }), polygon( [[ -18, -62 ], [ -20, -50 ], [ -7, -39 ]], { maxZoom: 18, attribution: '...' })] );
     
-    this.options = 	{ 
-      zoom: 4,
-      center: [6, -67],
-      layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
-    }
+ }
+ 
+ baselayers() {
 
+  this.layersControl = {
+    baseLayers: {
+      'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
+      'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    },
+    overlays: {
+     
+    }
+  }
+  this.options = 	{ 
+    zoom: 4,
+    center: [6, -67],
+    layers: [ this.layersControl.baseLayers['Google Hybrid']]
+  }
+
+ }
+
+ addLayer (ids: Array <number>, dataLayers: Array <any>) {
+
+  let dataListLayers = {  };
+   
+  this.options = 	{ 
+    zoom: 4,
+    center: [6, -67],
+    layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
+  }
+
+  for (let i = 0; i < dataLayers.length; i++) {
+    dataListLayers[i] =  {"id": ids[i], "data": dataLayers[i]};
+    this.options.layers.push(dataListLayers[i]["data"])
+   }
+  
  }
 
  private setFullscreenControl() {
@@ -98,5 +129,6 @@ export class MapComponent implements OnInit {
    this.setCoordinatesControl();
    this.setGeocoderControl();
    this.setScaleControl();
- }
+  }
+ 
 }
