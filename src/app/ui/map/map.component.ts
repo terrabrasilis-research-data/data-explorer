@@ -29,7 +29,7 @@ export class MapComponent implements OnInit {
  ngOnInit() {
   this.baselayers();
   
-  this.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
+  //this.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
   //this.addLayer( [0, 1], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' }), polygon( [[ -18, -62 ], [ -20, -50 ], [ -7, -39 ]], { maxZoom: 18, attribution: '...' })] );
     
  }

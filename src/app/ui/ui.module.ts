@@ -35,7 +35,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatButtonModule,
     MatSlideToggleModule
   ],
-  entryComponents: [SidebarComponent, DialogConfig, DialogInfo],
+  entryComponents: [SidebarComponent, DialogConfig, DialogInfo, MapComponent],
   exports: [LayoutComponent]
 })
 export class UiModule { }

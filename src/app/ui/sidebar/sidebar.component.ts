@@ -1,11 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatasetsService } from '../../services/dataset.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-import * as L from 'leaflet';
+import { MapComponent } from '../map/map.component';
 
 import { MapOptions, Map as MapLeaflet,
-  rectangle, tileLayer, geoJSON } from 'leaflet';
+  rectangle, tileLayer, polygon } from 'leaflet';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,9 +16,7 @@ export class SidebarComponent implements OnInit {
   
   color = 'primary';
 
-  constructor(private ds: DatasetsService, public dialog: MatDialog) { }
-
-  public map: MapLeaflet;
+  constructor(private ds: DatasetsService, public dialog: MatDialog, private mc: MapComponent) { }
 
   openConfigDialog(id: number): void {
     const dialogRef = this.dialog.open(DialogConfig, {
@@ -49,22 +46,9 @@ export class SidebarComponent implements OnInit {
     for (let i = 0; i < ids.length; i++) {
       this.layers.push(this.datasets[ids[i]-1])
     }
-
-    /*var geojsonFeature = {
-      "type": "Feature",
-      "properties": {
-          "name": "Coors Field",
-          "amenity": "Baseball Stadium",
-          "popupContent": "This is where the Rockies play!"
-      },
-      "geometry": {
-          "type": "Point",
-          "coordinates": [-104.99404, 39.75621]
-      }
-    };
-
-    L.geoJSON(geojsonFeature).addLayer(this.map);
-    */
+    
+    //this.mc.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
+  
   }
 
   ngOnInit() {
