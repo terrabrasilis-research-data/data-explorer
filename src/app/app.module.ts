@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiModule } from './ui/ui.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MapComponent } from './ui/map/map.component';
+
 @NgModule({
   declarations: [
     AppComponent,

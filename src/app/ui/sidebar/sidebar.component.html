@@ -20,13 +20,13 @@
     <mat-expansion-panel-header>
       <mat-panel-title>
       <i class="material-icons">search</i>
-      Buscar
+      Search
     </mat-panel-title>
 
     </mat-expansion-panel-header>
 
     <mat-form-field appearance="fill" class="bodySide">
-        <mat-label class="textMenu">Buscar em Datasets</mat-label>
+        <mat-label class="textMenu">Search in Datasets</mat-label>
         <mat-select [(value)]="selected" class="textMenu" multiple> 
           <mat-option *ngFor="let data of datasets" [value]="data.id">
             {{data.title}}
@@ -34,7 +34,7 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button class="btnSearch" (click)="addlayer(selected)">Adicionar Camada</button>
+      <button mat-raised-button class="btnSearch" (click)="addlayer(selected)">Add Layers</button>
   
     </mat-expansion-panel>
 
@@ -44,14 +44,15 @@
           
             <mat-panel-title >
             <i class="material-icons">layers</i>
-            Camadas
+            Layers
           </mat-panel-title>
     
         </mat-expansion-panel-header>
       
         <div class="itemLayer" *ngFor="let layer of layers">
                 
-          <div class="middleboxSide"> <i class="material-icons config" (click)="openConfigDialog(layer.id)">settings</i> </div>
+          <div class="middleboxSide"> <i class="material-icons config" (click)="openConfigDialog(layer.id)" matTooltip="Ferramentas da Camada">settings</i> </div>
+          
           <div class="rightboxSide">
             <div class="middleboxSide2 title" (click)="openInfoDialog(layer.id)"> {{layer.title}}  </div>
             <div class="rightboxSide2">

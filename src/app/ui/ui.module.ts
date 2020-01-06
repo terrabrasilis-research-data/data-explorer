@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent, DialogConfig, DialogInfo } from './sidebar/sidebar.component';
 import { MapComponent } from './map/map.component';
+import { FormsModule } from '@angular/forms';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +16,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';  
-import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -33,7 +34,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatInputModule,
     MatSliderModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTooltipModule
   ],
   entryComponents: [SidebarComponent, DialogConfig, DialogInfo, MapComponent],
   exports: [LayoutComponent]

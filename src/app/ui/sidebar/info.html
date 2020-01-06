@@ -1,28 +1,61 @@
 <h1 mat-dialog-title>Layer Info</h1>
 <div mat-dialog-content>
+
+<style type="text/css">
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th { background-color: rgb(27, 121, 183); color: white; margin: 8px;}
+
+
+  </style>
+
+<table>
+    <tr>
+        <th colspan="2">{{data.title | slice:0:60}}</th>
+      </tr>
+
+      <tr>
+        <td><b>Dataset ID</b></td>
+        <td>{{data.id}}</td>
+      </tr>
+
+      <tr>
+          <td><b>Author(s)</b></td>
+          <td>
+              <a *ngFor="let user of data.author; let i = index">
+                  <a class="spacetext">{{data.author[i]}}</a> 
+                  <a *ngIf="i != data.author.length-1 && i != data.author.length-2 ">, </a> 
+                  <a *ngIf="i == data.author.length-2"> & </a>
+              </a>          
+          </td>
+        </tr>
   
-  <table style="width: 100%; margin: 3px">
-      <tr style="background-color: rgb(27, 121, 183); color: white;">
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Points</th>
-      </tr>
       <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+        <td><b>Publication Date</b></td>
+        <td>{{data.created_on | slice:5:17}}</td>
       </tr>
+
       <tr>
-        <td>Eve</td>
-        <td>Jackson</td>
-        <td>94</td>
-      </tr>
+          <td><b>Maintainer</b></td>
+          <td>{{data.maintainer}}</td>
+        </tr>
+  
       <tr>
-        <td>Adam</td>
-        <td>Johnson</td>
-        <td>67</td>
+        <td><b>Contact</b></td>
+        <td>{{data.contact_email}}</td>
       </tr>
-    </table>
-  <br>
+
+  </table>
+  
+
 
 </div>

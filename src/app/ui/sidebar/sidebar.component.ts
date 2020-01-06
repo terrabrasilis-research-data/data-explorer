@@ -31,9 +31,10 @@ export class SidebarComponent implements OnInit {
 
   openInfoDialog(id: number): void {
     const dialogRef2 = this.dialog.open(DialogInfo, {
-      width: '450px',
-      height: '350px',
-      data: {id:  id, title: this.datasets[id].title}
+      width: '520px',
+      height: '420px',
+      data: {id:  id, title: this.datasets[id].title, created_on: this.datasets[id].created_on, author: this.datasets[id].author, license: this.datasets[id].license, contact_email: this.datasets[id].contact_email, categories: this.datasets[id].categories, bbox: this.datasets[id].bbox, maintainer: this.datasets[id].maintainer}
+
     });
 
     dialogRef2.afterClosed().subscribe(result => {
@@ -42,9 +43,9 @@ export class SidebarComponent implements OnInit {
   }
 
   addlayer(ids: Array < number >){
-    
+  
     for (let i = 0; i < ids.length; i++) {
-      this.layers.push(this.datasets[ids[i]-1])
+      this.layers.push(this.datasets[ids[i]])
     }
     
     //this.mc.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
