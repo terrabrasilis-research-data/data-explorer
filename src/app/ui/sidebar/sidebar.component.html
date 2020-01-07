@@ -51,7 +51,7 @@
       
         <div class="itemLayer" *ngFor="let layer of layers">
                 
-          <div class="middleboxSide"> <i class="material-icons config" (click)="openConfigDialog(layer.id)" matTooltip="Ferramentas da Camada">settings</i> </div>
+          <div class="middleboxSide"> <i class="material-icons config" (click)="openConfigDialog(layer.id)" matTooltip="Layer Settings">settings</i> </div>
           
           <div class="rightboxSide">
             <div class="middleboxSide2 title" (click)="openInfoDialog(layer.id)"> {{layer.title}}  </div>
@@ -72,9 +72,6 @@
 
       </mat-expansion-panel>
         
-  
-      
-
 
     </div>
     <!-- /#sidebar-wrapper -->

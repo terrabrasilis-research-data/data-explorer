@@ -1,11 +1,70 @@
-<h1 mat-dialog-title>Layer Config</h1>
+<h1 mat-dialog-title>Layer Settings</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Close</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  
+  <style type="text/css">
+
+    .line {
+      border-collapse: collapse;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .line2:hover {
+      color: rgb(3, 84, 139);
+      cursor: pointer;
+    }
+
+    .right {
+        float:left; 
+        text-align: left;
+        margin-left: 5%;
+        vertical-align: middle;
+
+    }
+
+    .rightText:hover {
+      text-decoration: underline;
+    }
+
+    .left { 
+        float:left;
+        text-align: left;
+        vertical-align: middle;
+    } 
+
+    .slider {
+      width: 150px;
+    }
+
+    .marginRight {
+      margin-right: 20px;
+    }
+
+  </style>
+  
+  <div class="line line2"> 
+    <div class="left"> <i class="material-icons">get_app</i> </div>
+    <div class="right rightText"> Download layer</div>
+  </div>
+
+  <div class="line"> 
+      <div class="left"> <i class="material-icons">color_lens</i> </div>
+      <div class="right marginRight"> 
+          Layer color
+      </div>
+
+      <input type="color" name="favcolor" value="#ff0000">
+  </div>
+
+  <div class="line"> 
+      <div class="left"> <i class="material-icons">brightness_6</i> </div>
+      <div class="right marginRight"> 
+          Visibility
+      </div>
+
+      <input class="slider" type="range" min="1" max="100" value="100">
+  </div>
+
 </div>

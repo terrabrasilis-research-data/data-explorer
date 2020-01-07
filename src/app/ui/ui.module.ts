@@ -17,13 +17,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';  
 import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatIconModule } from '@angular/material/icon'; 
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { DatasetComponent } from './map/dataset/dataset.component';
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, MapComponent, DialogConfig, DialogInfo],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, MapComponent, DialogConfig, DialogInfo, DatasetComponent],
   imports: [
     FormsModule,
+    MatIconModule,
     CommonModule,
     RouterModule,
     LeafletModule,
