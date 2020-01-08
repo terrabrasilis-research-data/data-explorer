@@ -8,6 +8,9 @@ import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
 
 import { MapOptions, Map as MapLeaflet,
   rectangle, tileLayer, polygon } from 'leaflet';
+import { Store, select } from '@ngrx/store';
+import { UIState } from '../ui.state';
+import * as fromUI from '../ui.reducer';
 
 @Component({
   selector: 'app-map',
@@ -15,16 +18,23 @@ import { MapOptions, Map as MapLeaflet,
   styleUrls: ['./map.component.scss']
 })
 
+
 export class MapComponent implements OnInit {
-  
- constructor() { 
-   
- }
- 
+   constructor(private store: Store<UIState>) {
+
+    this.store.pipe(select('ui')).subscribe(res => {
+      if (res.layers) {
+        this.layers = Object.values(res.features) as string[];
+      }
+    });
+
+  }
+
  public map: MapLeaflet;
  
  public options: MapOptions;
  public layersControl: any;
+ public layers;
 
  ngOnInit() {
   this.baselayers();
@@ -33,7 +43,7 @@ export class MapComponent implements OnInit {
   //this.addLayer( [0, 1], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' }), polygon( [[ -18, -62 ], [ -20, -50 ], [ -7, -39 ]], { maxZoom: 18, attribution: '...' })] );
     
  }
- 
+
  baselayers() {
 
   this.layersControl = {

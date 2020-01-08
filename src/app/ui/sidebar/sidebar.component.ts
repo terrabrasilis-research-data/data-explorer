@@ -2,9 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatasetsService } from '../../services/dataset.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MapComponent } from '../map/map.component';
+import { Store } from '@ngrx/store';
 
 import { MapOptions, Map as MapLeaflet,
   rectangle, tileLayer, polygon } from 'leaflet';
+import { addLayer } from '../ui.action';
+import { UIState } from '../ui.state';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +19,7 @@ export class SidebarComponent implements OnInit {
   
   color = 'primary';
 
-  constructor(private ds: DatasetsService, public dialog: MatDialog, private mc: MapComponent) { }
+  constructor(private ds: DatasetsService, public dialog: MatDialog, private store: Store<UIState>) { }
 
   openConfigDialog(id: number): void {
     const dialogRef = this.dialog.open(DialogConfig, {
@@ -46,10 +49,9 @@ export class SidebarComponent implements OnInit {
   
     for (let i = 0; i < ids.length; i++) {
       this.layers.push(this.datasets[ids[i]])
+      this.store.dispatch(addLayer([polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' })]));
     }
     
-    //this.mc.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
-  
   }
 
   ngOnInit() {
