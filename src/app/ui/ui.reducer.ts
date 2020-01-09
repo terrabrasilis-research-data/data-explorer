@@ -11,6 +11,6 @@ const initialState: UIState = {
 
 export const reducer = createReducer(initialState,
     on(addLayer, (state, payload) => {
-        return { ...state, layers: payload['layers'] };
+        return { ...state, layers: [payload] };
       }),
 )

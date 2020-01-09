@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
   
     for (let i = 0; i < ids.length; i++) {
       this.layers.push(this.datasets[ids[i]])
-      this.store.dispatch(addLayer([polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' })]));
+      this.store.dispatch(addLayer(polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' })));
     }
     
   }

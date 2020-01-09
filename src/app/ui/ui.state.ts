@@ -2,6 +2,6 @@
 export interface UIState {
 
     /** tiles with data in cube selected */
-    readonly layers: string[];
+    readonly layers: object[];
    
 }

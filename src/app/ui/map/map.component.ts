@@ -20,15 +20,14 @@ import * as fromUI from '../ui.reducer';
 
 
 export class MapComponent implements OnInit {
+
    constructor(private store: Store<UIState>) {
+    this.store.pipe(select('layers')).subscribe(res => {
+      
+      //??
 
-    this.store.pipe(select('ui')).subscribe(res => {
-      if (res.layers) {
-        this.layers = Object.values(res.features) as string[];
-      }
-    });
-
-  }
+    })
+   }
 
  public map: MapLeaflet;
  
@@ -37,11 +36,12 @@ export class MapComponent implements OnInit {
  public layers;
 
  ngOnInit() {
+
   this.baselayers();
   
-  //this.addLayer( [0], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' })] );
-  //this.addLayer( [0, 1], [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { maxZoom: 18, attribution: '...' }), polygon( [[ -18, -62 ], [ -20, -50 ], [ -7, -39 ]], { maxZoom: 18, attribution: '...' })] );
-    
+  //this.addLayer( [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: 0, maxZoom: 18, attribution: '...' })] );
+  //this.addLayer( [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], {  id: 0, maxZoom: 18, attribution: '...' }), polygon( [[ -18, -62 ], [ -20, -50 ], [ -7, -39 ]], {  id: 1, maxZoom: 18, attribution: '...' })] );
+  
  }
 
  baselayers() {
@@ -55,6 +55,7 @@ export class MapComponent implements OnInit {
      
     }
   }
+ 
   this.options = 	{ 
     zoom: 4,
     center: [6, -67],
@@ -63,8 +64,8 @@ export class MapComponent implements OnInit {
 
  }
 
- addLayer (ids: Array <number>, dataLayers: Array <any>) {
-
+ addLayer (dataLayers: Array <any>) {
+  
   let dataListLayers = {  };
    
   this.options = 	{ 
@@ -74,7 +75,7 @@ export class MapComponent implements OnInit {
   }
 
   for (let i = 0; i < dataLayers.length; i++) {
-    dataListLayers[i] =  {"id": ids[i], "data": dataLayers[i]};
+    dataListLayers[i] =  {"data": dataLayers[i]};
     this.options.layers.push(dataListLayers[i]["data"])
    }
   
