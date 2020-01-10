@@ -6,11 +6,11 @@ import { UIState } from './ui.state';
 
 /** initial values to Explore State */
 const initialState: UIState = {
-  layers: [],
+  layer: null,
 };
 
 export const reducer = createReducer(initialState,
     on(addLayer, (state, payload) => {
-        return { ...state, layers: [payload] };
-      }),
+      return { ...state, layer: payload.layer };
+    }),
 )

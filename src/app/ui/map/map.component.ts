@@ -22,11 +22,15 @@ import * as fromUI from '../ui.reducer';
 export class MapComponent implements OnInit {
 
    constructor(private store: Store<UIState>) {
-    this.store.pipe(select('layers')).subscribe(res => {
+
+    this.store.pipe(select('ui')).subscribe(res => {
       
-      //??
+      if(res['layer'] && this.map){
+        this.map.addLayer(res['layer'])
+      }
 
     })
+
    }
 
  public map: MapLeaflet;
@@ -38,10 +42,7 @@ export class MapComponent implements OnInit {
  ngOnInit() {
 
   this.baselayers();
-  
-  //this.addLayer( [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: 0, maxZoom: 18, attribution: '...' })] );
-  //this.addLayer( [polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], {  id: 0, maxZoom: 18, attribution: '...' }), polygon( [[ -18, -62 ], [ -20, -50 ], [ -7, -39 ]], {  id: 1, maxZoom: 18, attribution: '...' })] );
-  
+
  }
 
  baselayers() {

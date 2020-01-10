@@ -1,13 +1,13 @@
 .button-datasets {
     z-index: 999;
-    top: 140px;
-    right: 10px;
+    top: 228px;
+    left: 260px;
     position: absolute;
     display: flex;
 
     .btn-start {
-        width: 44px;
-        height: 44px;
+        width: 34px;
+        height: 34px;
         border-radius: 4px;
         border: 2px solid rgba(#000, 0.2);
         cursor: pointer;
@@ -15,11 +15,11 @@
         .mat-icon {
             padding: 6px 0 0 6px;
             background: #FFF;
-            width: 38px;
-            height: 38px;
+            width: 30px;
+            height: 30px;
             margin: 0;
             border-radius: 2px;
-            font-size: 32px;
+            font-size: 18.5px;
 
             &:hover {
                 background: #EEE;
