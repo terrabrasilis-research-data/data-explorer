@@ -20,9 +20,7 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     BrowserAnimationsModule,
     UiModule,
-    StoreModule.forRoot({
-      ui: fromUI.reducer,
-    }),
+    StoreModule.forRoot({ ui: fromUI.reducer }),
   ],
   providers: [MapComponent],
   bootstrap: [AppComponent]

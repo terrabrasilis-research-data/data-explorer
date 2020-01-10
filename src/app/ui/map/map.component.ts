@@ -7,7 +7,7 @@ import 'esri-leaflet/dist/esri-leaflet.js';
 import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
 
 import { MapOptions, Map as MapLeaflet,
-  rectangle, tileLayer, polygon } from 'leaflet';
+  rectangle, tileLayer, Layer } from 'leaflet';
 import { Store, select } from '@ngrx/store';
 import { UIState } from '../ui.state';
 import * as fromUI from '../ui.reducer';
@@ -21,23 +21,20 @@ import * as fromUI from '../ui.reducer';
 
 export class MapComponent implements OnInit {
 
-   constructor(private store: Store<UIState>) {
-
+   constructor(private store: Store<fromUI.AppState>) {
     this.store.pipe(select('ui')).subscribe(res => {
       
       if(res['layer'] && this.map){
-        this.map.addLayer(res['layer'])
+        this.map.addLayer(res['layer'].layer)
       }
 
     })
-
    }
 
  public map: MapLeaflet;
  
  public options: MapOptions;
  public layersControl: any;
- public layers;
 
  ngOnInit() {
 
@@ -59,7 +56,7 @@ export class MapComponent implements OnInit {
  
   this.options = 	{ 
     zoom: 4,
-    center: [6, -67],
+    center: [-6, -67],
     layers: [ this.layersControl.baseLayers['Google Hybrid']]
   }
 

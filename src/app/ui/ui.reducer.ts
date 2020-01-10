@@ -9,8 +9,12 @@ const initialState: UIState = {
   layer: null,
 };
 
+export interface AppState {
+  ui: UIState;
+}
+
 export const reducer = createReducer(initialState,
     on(addLayer, (state, payload) => {
-      return { ...state, layer: payload.layer };
+      return { ...state, layer: payload };
     }),
 )
