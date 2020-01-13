@@ -11,6 +11,7 @@ import { MapOptions, Map as MapLeaflet,
 import { Store, select } from '@ngrx/store';
 import { UIState } from '../ui.state';
 import * as fromUI from '../ui.reducer';
+import { removeLayer } from '../ui.action';
 
 @Component({
   selector: 'app-map',
@@ -31,8 +32,11 @@ export class MapComponent implements OnInit {
 
       //remove layer
       if(res['layerToDisabled'] && this.map){
-        console.log(res['layerToDisabled'].id)
-        //this.map.removeLayer()
+        this.map.eachLayer( l => {
+          if (l['options']['id'] == res['layerToDisabled'].id) {
+            this.map.removeLayer(l);
+          }
+        });
       } 
       
     })

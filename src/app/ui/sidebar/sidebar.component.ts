@@ -18,6 +18,7 @@ import { UIState } from '../ui.state';
 export class SidebarComponent implements OnInit {
   
   color = 'primary';
+  layers_ids = [];
 
   constructor(private ds: DatasetsService, public dialog: MatDialog, private store: Store<UIState>) { }
 
@@ -47,11 +48,14 @@ export class SidebarComponent implements OnInit {
 
   addlayer(ids: Array < number >){  
     for (let i = 0; i < ids.length; i++) {
-      this.layers.push(this.datasets[ids[i]-1])
-      this.store.dispatch(addLayer({
-        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' } )
-    }))
-    }
+      if(!this.layers_ids.includes(ids[i])){
+        this.layers_ids.push(ids[i])
+        this.layers.push(this.datasets[ids[i]-1])
+        this.store.dispatch(addLayer({
+          layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' } )
+      }))
+    }     
+   }
   }
 
   removelayer(id: number){
@@ -63,9 +67,9 @@ export class SidebarComponent implements OnInit {
       this.store.dispatch(addLayer({
         layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: id, maxZoom: 18, attribution: '...' } )
       }))
-    }
-    else
+    } else {
       this.removelayer(id);
+    }
   }
 
   ngOnInit() {

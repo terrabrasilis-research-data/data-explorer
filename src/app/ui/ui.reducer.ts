@@ -4,6 +4,7 @@ import {
     removeLayer
 } from './ui.action';
 import { UIState } from './ui.state';
+import { ɵConsole } from '@angular/core';
 
 /** initial values to Explore State */
 const initialState: UIState = {
