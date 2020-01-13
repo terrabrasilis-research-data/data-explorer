@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { MapOptions, Map as MapLeaflet,
   rectangle, tileLayer, polygon } from 'leaflet';
-import { addLayer } from '../ui.action';
+import { addLayer, removeLayer } from '../ui.action';
 import { UIState } from '../ui.state';
 
 @Component({
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
     const dialogRef2 = this.dialog.open(DialogInfo, {
       width: '520px',
       height: '420px',
-      data: {id:  id, title: this.datasets[id].title, created_on: this.datasets[id].created_on, author: this.datasets[id].author, license: this.datasets[id].license, contact_email: this.datasets[id].contact_email, categories: this.datasets[id].categories, bbox: this.datasets[id].bbox, maintainer: this.datasets[id].maintainer}
+      data: {id:  id+1, title: this.datasets[id].title, created_on: this.datasets[id].created_on, author: this.datasets[id].author, license: this.datasets[id].license, contact_email: this.datasets[id].contact_email, categories: this.datasets[id].categories, bbox: this.datasets[id].bbox, maintainer: this.datasets[id].maintainer}
 
     });
 
@@ -45,15 +45,27 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  addlayer(ids: Array < number >){
-  
+  addlayer(ids: Array < number >){  
     for (let i = 0; i < ids.length; i++) {
-      this.layers.push(this.datasets[ids[i]])
+      this.layers.push(this.datasets[ids[i]-1])
       this.store.dispatch(addLayer({
         layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' } )
     }))
     }
-    
+  }
+
+  removelayer(id: number){
+    this.store.dispatch( removeLayer({id: id}) )
+  }
+  
+  slidechange(id: number, status: any){
+    if (status.checked == true){
+      this.store.dispatch(addLayer({
+        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: id, maxZoom: 18, attribution: '...' } )
+      }))
+    }
+    else
+      this.removelayer(id);
   }
 
   ngOnInit() {

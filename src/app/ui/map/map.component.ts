@@ -23,11 +23,18 @@ export class MapComponent implements OnInit {
 
    constructor(private store: Store<fromUI.AppState>) {
     this.store.pipe(select('ui')).subscribe(res => {
-      
+
+      //add layer
       if(res['layer'] && this.map){
         this.map.addLayer(res['layer'].layer)
       }
 
+      //remove layer
+      if(res['layerToDisabled'] && this.map){
+        console.log(res['layerToDisabled'].id)
+        //this.map.removeLayer()
+      } 
+      
     })
    }
 
@@ -60,23 +67,6 @@ export class MapComponent implements OnInit {
     layers: [ this.layersControl.baseLayers['Google Hybrid']]
   }
 
- }
-
- addLayer (dataLayers: Array <any>) {
-  
-  let dataListLayers = {  };
-   
-  this.options = 	{ 
-    zoom: 4,
-    center: [6, -67],
-    layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
-  }
-
-  for (let i = 0; i < dataLayers.length; i++) {
-    dataListLayers[i] =  {"data": dataLayers[i]};
-    this.options.layers.push(dataListLayers[i]["data"])
-   }
-  
  }
 
  private setFullscreenControl() {

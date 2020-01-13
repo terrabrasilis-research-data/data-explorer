@@ -54,12 +54,13 @@
           <div class="middleboxSide"> <i class="material-icons config" (click)="openConfigDialog(layer.id)" matTooltip="Layer Settings">settings</i> </div>
           
           <div class="rightboxSide">
-            <div class="middleboxSide2 title" (click)="openInfoDialog(layer.id)"> {{layer.title}}  </div>
+            <div class="middleboxSide2 title" (click)="openInfoDialog(layer.id-1)"> {{layer.title}}  </div>
             <div class="rightboxSide2">
               
               <mat-slide-toggle
               [color]="color"
-              [checked]="true">
+              [checked]="true"
+              (change)="slidechange(layer.id, $event)">
               </mat-slide-toggle>
             
             </div>
