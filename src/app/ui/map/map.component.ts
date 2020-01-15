@@ -11,7 +11,7 @@ import { MapOptions, Map as MapLeaflet,
 import { Store, select } from '@ngrx/store';
 import { UIState } from '../ui.state';
 import * as fromUI from '../ui.reducer';
-import { removeLayer } from '../ui.action';
+import { removeLayer, addLayer } from '../ui.action';
 
 @Component({
   selector: 'app-map',
@@ -26,17 +26,21 @@ export class MapComponent implements OnInit {
     this.store.pipe(select('ui')).subscribe(res => {
 
       //add layer
-      if(res['layer'] && this.map){
+      if(res['layer'] && res['layer'].layer  && this.map){
         this.map.addLayer(res['layer'].layer)
+        this.store.dispatch(addLayer({
+          layer: null
+      }))
       }
 
       //remove layer
-      if(res['layerToDisabled'] && this.map){
+      if(res['layerToDisabled'] && res['layerToDisabled'].id && this.map){
         this.map.eachLayer( l => {
           if (l['options']['id'] == res['layerToDisabled'].id) {
             this.map.removeLayer(l);
           }
         });
+        this.store.dispatch(removeLayer({id: null}))
       } 
       
     })

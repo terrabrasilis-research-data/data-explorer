@@ -59,6 +59,7 @@ export class SidebarComponent implements OnInit {
   }
 
   removelayer(id: number){
+    console.log(id);
     this.store.dispatch( removeLayer({id: id}) )
   }
   
