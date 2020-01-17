@@ -1,4 +1,6 @@
-# TerrabrasilisResearchDataExplorer
+# TerraBrasilis Research Data - Data Explorer
+
+The Data Explorer is responsible for providing visualization of the platform's georeferenced data, with map-based navigation, layer management, and other Web GIS functions.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
