@@ -23,13 +23,23 @@ export class SidebarComponent implements OnInit {
   constructor(private ds: DatasetsService, public dialog: MatDialog, private store: Store<UIState>) { }
 
   openConfigDialog(id: number): void {
+
     const dialogRef = this.dialog.open(DialogConfig, {
       width: '350px',
-      data: {id:  id, title: this.datasets[id].title}
+      data: {id:  id, title: this.datasets[id].title, color: this.layer_conf.find(x => x.id == id).color, alpha: this.layer_conf.find(x => x.id == id).alpha}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      
+    dialogRef.afterClosed().subscribe(results => {
+
+      //this.layer_conf.find(x => x.id == id).color = "#ff0000"
+      //this.layer_conf.find(x => x.id == id).alpha = 100;
+
+      this.removelayer(id);
+
+      this.store.dispatch(addLayer({
+        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { color: this.layer_conf.find(x => x.id == id).color, opacity: this.layer_conf.find(x => x.id == id).alpha, id: id, maxZoom: 18, attribution: '...' } )
+      }))
+
     });
   }
 
@@ -38,35 +48,34 @@ export class SidebarComponent implements OnInit {
       width: '520px',
       height: '420px',
       data: {id:  id+1, title: this.datasets[id].title, created_on: this.datasets[id].created_on, author: this.datasets[id].author, license: this.datasets[id].license, contact_email: this.datasets[id].contact_email, categories: this.datasets[id].categories, bbox: this.datasets[id].bbox, maintainer: this.datasets[id].maintainer}
-
     });
 
     dialogRef2.afterClosed().subscribe(result => {
-      
     });
   }
 
-  addlayer(ids: Array < number >){  
+  addlayerColorAlpha(ids: Array < number >, color: string, alpha: number){  
     for (let i = 0; i < ids.length; i++) {
       if(!this.layers_ids.includes(ids[i])){
         this.layers_ids.push(ids[i])
         this.layers.push(this.datasets[ids[i]-1])
+        this.layer_conf.push({id: ids[i], color: color, alpha: alpha})
         this.store.dispatch(addLayer({
-          layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: ids[i], maxZoom: 18, attribution: '...' } )
+          layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { color: color, opacity: alpha, id: ids[i], maxZoom: 18, attribution: '...' } )
       }))
     }     
    }
   }
-
+  
   removelayer(id: number){
-    console.log(id);
     this.store.dispatch( removeLayer({id: id}) )
   }
   
   slidechange(id: number, status: any){
+    console.log("entrou")
     if (status.checked == true){
       this.store.dispatch(addLayer({
-        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { id: id, maxZoom: 18, attribution: '...' } )
+        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { color: this.layer_conf.find(x => x.id == id).color, opacity: this.layer_conf.find(x => x.id == id).alpha, id: id, maxZoom: 18, attribution: '...' } )
       }))
     } else {
       this.removelayer(id);
@@ -80,6 +89,7 @@ export class SidebarComponent implements OnInit {
   datasets: Dataset = null;
   
   layers = [];
+  layer_conf = [];
 
   async get_datasets(){
     const response = await this.ds.get_datasets();

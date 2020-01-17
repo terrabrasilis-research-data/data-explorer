@@ -34,10 +34,9 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button class="btnSearch" (click)="addlayer(selected)">Add Layers</button>
-  
+      <button mat-raised-button class="btnSearch" (click)="addlayerColorAlpha(selected, '#3388ff', 100)">Add Layers</button>
+      
     </mat-expansion-panel>
-
 
     <mat-expansion-panel  [expanded]="true">
         <mat-expansion-panel-header>
@@ -65,14 +64,11 @@
             
             </div>
             
-  
           </div>
 
         </div>
 
-
       </mat-expansion-panel>
         
-
     </div>
     <!-- /#sidebar-wrapper -->
