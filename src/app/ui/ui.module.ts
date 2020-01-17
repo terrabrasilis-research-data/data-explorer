@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';  
 import { MatIconModule } from '@angular/material/icon'; 
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { DatasetComponent } from './map/dataset/dataset.component';
@@ -26,6 +27,7 @@ import { DatasetComponent } from './map/dataset/dataset.component';
     LeafletModule,
     MatDialogModule,
     MatSelectModule,
+    MatTooltipModule,
     MatExpansionModule,
     MatButtonModule,
     MatSlideToggleModule,
