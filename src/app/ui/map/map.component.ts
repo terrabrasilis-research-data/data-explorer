@@ -9,7 +9,6 @@ import * as LE from 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js';
 import { MapOptions, Map as MapLeaflet,
   rectangle, tileLayer, Layer } from 'leaflet';
 import { Store, select } from '@ngrx/store';
-import { UIState } from '../ui.state';
 import * as fromUI from '../ui.reducer';
 import { removeLayer, addLayer } from '../ui.action';
 

@@ -2,11 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatasetsService } from '../../services/dataset.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MapComponent } from '../map/map.component';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import * as fromUI from '../ui.reducer';
 
 import { MapOptions, Map as MapLeaflet,
   rectangle, tileLayer, polygon } from 'leaflet';
-import { addLayer, removeLayer } from '../ui.action';
+import { addLayer, removeLayer, addLayerConf } from '../ui.action';
 import { UIState } from '../ui.state';
 
 @Component({
@@ -20,7 +21,7 @@ export class SidebarComponent implements OnInit {
   color = 'primary';
   layers_ids = [];
 
-  constructor(private ds: DatasetsService, public dialog: MatDialog, private store: Store<UIState>) { }
+  constructor(private ds: DatasetsService, public dialog: MatDialog, private store: Store<fromUI.AppState>) { }
 
   openConfigDialog(id: number): void {
 
@@ -30,17 +31,11 @@ export class SidebarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(results => {
-
-      //this.layer_conf.find(x => x.id == id).color = "#ff0000"
-      //this.layer_conf.find(x => x.id == id).alpha = 100;
-
-      this.removelayer(id);
-
-      this.store.dispatch(addLayer({
-        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { color: this.layer_conf.find(x => x.id == id).color, opacity: this.layer_conf.find(x => x.id == id).alpha, id: id, maxZoom: 18, attribution: '...' } )
-      }))
-
-    });
+      this.store.pipe(select('ui')).subscribe(res => {
+        this.layer_conf.find(x => x.id == res['layer_conf'].id).color = res['layer_conf'].color;
+        this.layer_conf.find(x => x.id == res['layer_conf'].id).alpha = res['layer_conf'].alpha;
+      })
+      });
   }
 
   openInfoDialog(id: number): void {
@@ -107,8 +102,28 @@ export class SidebarComponent implements OnInit {
 export class DialogConfig {
 
   constructor(
+
     public dialogRef: MatDialogRef<DialogConfig>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store<UIState>) {}
+    
+    save(id: number){
+
+      //remove layer
+      this.store.dispatch( removeLayer({id: id}) )
+
+      //add new layer
+      this.store.dispatch(addLayer({
+        layer: polygon( [[ 2, -80 ], [ 15, -50 ], [ -10, -50 ]], { color: ((document.getElementById("colorpicker") as HTMLInputElement).value), opacity: ((document.getElementById("sliderpicker") as HTMLInputElement).value), id: id, maxZoom: 18, attribution: '...' } )
+      }))
+
+      //save layer conf
+      this.store.dispatch(addLayerConf({id: id, color: ((document.getElementById("colorpicker") as HTMLInputElement).value), alpha: ((document.getElementById("sliderpicker") as HTMLInputElement).value)}));
+
+      //close
+      this.dialogRef.close();
+
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -158,4 +173,10 @@ export interface Data_obj {
 
 export interface DialogData {
   id: number;
+}
+
+export interface LayerCon {
+  id: number;
+  color: string;
+  alpha: string;
 }

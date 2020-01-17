@@ -3,6 +3,16 @@
   
   <style type="text/css">
 
+    .button{
+        background: #0F66A0; 
+        color: white;
+    }
+
+    .button:hover{
+        background:rgb(42, 138, 201);
+        color: white;
+    }
+
     .line {
       border-collapse: collapse;
       width: 100%;
@@ -42,6 +52,13 @@
       margin-right: 20px;
     }
 
+    #wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
   </style>
   
   <div class="line line2"> 
@@ -55,7 +72,7 @@
           Layer color
       </div>
 
-      <input type="color" name="favcolor" value="{{data.color}}">
+      <input id="colorpicker" type="color" name="favcolor" value="{{data.color}}">
       
   </div>
 
@@ -65,7 +82,13 @@
           Visibility
       </div>
 
-      <input class="slider" type="range" min="1" max="100" value="{{data.alpha}}">
+      <input id="sliderpicker" name="sliderfav" class="slider" type="range" min="1" max="100" value="{{data.alpha}}">
   </div>
 
+  
+
+  <div id="wrapper">
+    <a class="btn button" (click)="save(data.id)">Save changes</a>
+  </div>
+  
 </div>

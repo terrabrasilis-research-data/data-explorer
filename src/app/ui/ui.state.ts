@@ -1,4 +1,5 @@
 import { Layer } from 'leaflet'
+import { LayerCon } from './sidebar/sidebar.component';
 
 /** State Model - used in Explore module */
 export interface UIState {
@@ -9,4 +10,6 @@ export interface UIState {
     /** layer with data */
     readonly layer: Layer;
    
+    /** layer conf with data */
+    readonly layer_conf: LayerCon;
 }

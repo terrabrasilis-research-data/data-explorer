@@ -1,15 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 import {
     addLayer,
-    removeLayer
+    removeLayer,
+    addLayerConf
 } from './ui.action';
 import { UIState } from './ui.state';
-import { ɵConsole } from '@angular/core';
 
 /** initial values to Explore State */
 const initialState: UIState = {
   layer: null,
   layerToDisabled: null,
+  layer_conf: null,
 };
 
 export interface AppState {
@@ -22,5 +23,8 @@ export const reducer = createReducer(initialState,
     }),
     on(removeLayer, (state, payload) => {
       return { ...state, layerToDisabled: payload };
+    }),
+    on(addLayerConf, (state, payload) => {
+      return { ...state, layer_conf: payload };
     }),
 )
