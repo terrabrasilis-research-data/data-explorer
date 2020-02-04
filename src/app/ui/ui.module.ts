@@ -14,17 +14,20 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';  
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { DragDropModule } from '@angular/cdk/drag-drop'; 
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { DatasetComponent } from './map/dataset/dataset.component';
+import { BoxComponent } from './map/dataset/box/box.component';
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, MapComponent, DialogConfig, DialogInfo, DatasetComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, MapComponent, DialogConfig, DialogInfo, DatasetComponent, BoxComponent],
   imports: [
     MatIconModule,
     CommonModule,
     RouterModule,
     LeafletModule,
+    DragDropModule,
     MatDialogModule,
     MatSelectModule,
     MatTooltipModule,

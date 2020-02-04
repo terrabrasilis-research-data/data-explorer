@@ -1,0 +1,54 @@
+.datasetBox{    
+    position: absolute;
+    z-index: 999;
+    top: 228px;
+    left: 260px;
+    border-radius: 7.5px;
+    border: 2px solid rgba(0,0,0,0.2);
+    background: #FFF;
+    position: absolute;
+    display: flex;
+    width: 350px;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.header{
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    width: 346px;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFF;
+    color: #176dc2;
+    border-bottom: 1px solid #2196f3;
+    border-radius: 7.5px 7.5px 0 0;
+    padding: 0px 15px 0 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.16);
+
+    h3 {
+        padding-top: 5px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        cursor: grab;
+        
+        .mat-icon {
+            color: #176dc2;
+            margin-right: 10px;
+        }
+    }
+
+    .mat-icon {
+        color: #999;
+    }
+}
+
+.content {
+    background: rgba(#FFF, 0.9);
+    margin-top: 50px;
+    padding-left: 8px;
+
+}

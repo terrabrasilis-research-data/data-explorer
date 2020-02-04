@@ -4,3 +4,8 @@
         <mat-icon>info</mat-icon>
     </div>
 </div>
+
+<app-box
+    (toggleToEmit)="closeBox()"
+    [visible]="viewBox">
+</app-box>
