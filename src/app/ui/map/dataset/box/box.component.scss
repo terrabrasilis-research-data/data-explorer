@@ -50,5 +50,27 @@
     background: rgba(#FFF, 0.9);
     margin-top: 50px;
     padding-left: 8px;
+}
 
+.col{
+    font-size: 15px;
+}
+
+.sizeIcon{
+  color: #4f5355;
+  position: relative;
+  vertical-align:bottom;
+}
+
+.button{
+    background: #0F66A0; 
+    color: white;
+}
+
+.button:hover{
+    background:rgb(42, 138, 201);
+}
+
+.topM{
+    margin-top: 10px;
 }

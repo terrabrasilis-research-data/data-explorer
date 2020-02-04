@@ -1,8 +1,8 @@
 <div class="datasetBox" *ngIf="visibleBox" cdkDrag>
   <div class="header">
     <h3 cdkDragHandle>
-        <mat-icon>info</mat-icon>
-        Layer Advanced Information
+        <mat-icon>description</mat-icon>
+        Datasets Files
     </h3>
     <button mat-icon-button (click)="closeBox()">
         <mat-icon>close</mat-icon>
@@ -11,6 +11,30 @@
 
   <div class="content">
     
+    <table class="table table-striped vertical">
+      <thead>
+      <tr>
+        <th class="col" scope="col">Name</th>
+        <th class="col"  scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of data_objects; index as i">
+      
+      <td> 
+      <div class="col topM">
+                  {{data.name | slice:0:18}}
+      </div>
+
+      </td>
+        <td class="col">
+              <a routerLink="/" class="btn button">Download</a>
+              
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
   </div>
   
 </div>
