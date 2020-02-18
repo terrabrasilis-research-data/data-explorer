@@ -53,6 +53,7 @@ export class SidebarComponent implements OnInit {
     for (let i = 0; i < ids.length; i++) {
       if(!this.layers_ids.includes(ids[i])){
         this.layers_ids.push(ids[i])
+        
         this.layers.push(this.datasets[ids[i]-1])
         this.layer_conf.push({id: ids[i], color: color, alpha: alpha})
         this.store.dispatch(addLayer({

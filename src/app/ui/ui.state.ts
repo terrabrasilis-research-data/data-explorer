@@ -12,4 +12,7 @@ export interface UIState {
    
     /** layer conf with data */
     readonly layer_conf: LayerCon;
+    
+    /** list of ids */
+    readonly list_ids: any;
 }

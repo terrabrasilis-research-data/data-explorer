@@ -24,3 +24,11 @@ export const removeLayer = createAction(
     '[Map Component] name Layers',
     props<object>()
 );
+
+/**
+ * add ids to a list
+ */
+export const addLayerList = createAction(
+    '[Map Component] name Layers',
+    props<object>()
+);
