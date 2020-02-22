@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  dataexplorer:
+    container_name: dataexplorer
+    restart: unless-stopped
+    build: 
+        context: ..
+        dockerfile: docker/dataexplorer/Dockerfile
+    ports:
+        - "8095:4200"
