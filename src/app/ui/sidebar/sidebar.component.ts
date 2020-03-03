@@ -147,13 +147,11 @@ export class DialogInfo {
   }
 }
 
-export interface Dataset{
-  bbox: string;
-  data: Array < Data_obj > ;
+export interface Dataset {
   id: number;
   title: string;
   year: string;
-  author: Array < string > ;
+  author: User;
   abstract: string;
   categories: Array < string > ;
   size: number;
@@ -162,7 +160,20 @@ export interface Dataset{
   filetypes:  Array < string > 
   created_on: string;
   license: string;
-  contact_email: string;
+}
+
+export interface Group {
+  group_id: number;
+  authors: Array < string >;
+  name: string;
+  year: number;
+  abstract: string;
+  image: string;
+}
+
+export interface User {
+  name: string;
+  img: string;
 }
 
 export interface Data_obj {

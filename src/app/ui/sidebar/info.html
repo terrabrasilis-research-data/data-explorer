@@ -31,11 +31,11 @@
       <tr>
           <td><b>Author(s)</b></td>
           <td>
-              <a *ngFor="let user of data.author; let i = index">
-                  <a class="spacetext">{{data.author[i]}}</a> 
-                  <a *ngIf="i != data.author.length-1 && i != data.author.length-2 ">, </a> 
-                  <a *ngIf="i == data.author.length-2"> & </a>
-              </a>          
+              <a *ngFor="let author of data.author; let j = index">
+                <a class="spacetext">{{ data.author[j].name }}</a> 
+                <a *ngIf="j !=  data.author.length-1 && j !=  data.author.length-2 ">, </a> 
+                <a *ngIf="j ==  data.author.length-2"> & </a>
+            </a>    
           </td>
         </tr>
   
